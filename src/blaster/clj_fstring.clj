@@ -1,0 +1,57 @@
+(ns blaster.clj-fstring
+  (:require
+   [clojure.string :as str]
+   [clojure.edn :as edn]))
+
+
+(defn- escaped?
+  [s index]
+  (if (neg? (- index 1))
+    false
+    (= "'" (subs s (dec index) index))
+    ))
+
+(comment
+  (escaped? "fff '{foo}" 5)
+  )
+
+
+(defn- f-first-brackets-index
+  [s]
+  (let [curly-open (str/index-of s "{") 
+        curly-close (str/index-of s "}")]
+    (cond
+      (and (not curly-open) (not curly-close)) nil
+      (and (some? curly-open) (not curly-close)) (throw (ex-info "Curly brackets mismatch" {:string s}))
+      (and (not curly-open) (some? curly-close)) (throw (ex-info "Curly brackets mismatch" {:string s}))
+      :else [curly-open curly-close ])
+    ))
+
+(defn f-string
+  ([s]
+   (f-string s []))
+  ([s acc]
+   (if-let [indeces (f-first-brackets-index s)]
+     (let [curly-open (first indeces)
+           curly-close (last indeces)
+           start-s (subs s 0 curly-open)
+           rest-s (subs s (inc curly-close))
+           sym (subs s (inc curly-open) curly-close)]
+       (if (escaped? s curly-open)
+         (recur rest-s (concat acc [(str/replace (subs s 0 (inc curly-close)) "'{" "{")]))
+         (recur rest-s (concat acc [start-s (eval (edn/read-string sym))]))))
+     (reduce str (concat acc [s])))))
+
+(comment
+  (def who "John Smith")
+  #f/str "Hello, {who}!" ;; => "Hello, John Smith!" 
+
+  ;; It also works with arbitrary expressions
+  #f/str "1 + 1 = {(+ 1 2)}" ;; => "1 + 1 = 3"
+
+  ;; And it has a simple escape syntax in case you actually need the curly brackets
+  #f/str "This is not evaluated '{spam}";; => "This is not evaluated {spam}"
+
+  (def where "Sparta")
+  (f-string "This is {where}!")
+  )
