@@ -6,7 +6,6 @@ After switching to Clojure the only thing I really missed was the f-string synta
 
 ```python
 name = "John Smith"
-
 print(f'Hello, {name}!')
 >>> Hello, John Smith!
 ```
@@ -15,9 +14,7 @@ Real handy. So as an excercise, I made the same for Clojure:
 
 ```clojure
 (def who "John Smith")
-
 #f/str "Hello, {who}!" ;; => "Hello, John Smith!" 
-
 ```
 
 `f-string` has no dependencies, only the standard library. 
