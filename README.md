@@ -2,22 +2,25 @@
 
 Python's f-string for Clojure!
 
-After switching to clojure the only thing I really missed was the f-string syntax. Remember?
+After switching to Clojure the only thing I really missed was the f-string syntax. Remember?
 
 ```python
 name = "John Smith"
+
 print(f'Hello, {name}!')
 >>> Hello, John Smith!
 ```
 
-Real handy. So I made the same for Clojure.
+Real handy. So as an excercise, I made the same for Clojure:
 
 ```clojure
 (def who "John Smith")
+
 #f/str "Hello, {who}!" ;; => "Hello, John Smith!" 
+
 ```
 
-`f-string` has no dependencies, only the standard library.
+`f-string` has no dependencies, only the standard library. 
 
 ## Usage
 
@@ -81,7 +84,7 @@ Your library will be deployed to io.github.blasterai/clj-fstring on clojars.org 
 If you don't plan to install/deploy the library, you can remove the
 `pom.xml` file but you will also need to remove `:sync-pom true` from the `deps.edn`
 file (in the `:exec-args` for `depstar`).
-
+    
 ## License
 
 Copyright © 2021 blaster.ai

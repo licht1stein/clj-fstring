@@ -41,17 +41,3 @@
          (recur rest-s (concat acc [(str/replace (subs s 0 (inc curly-close)) "'{" "{")]))
          (recur rest-s (concat acc [start-s (eval (edn/read-string sym))]))))
      (reduce str (concat acc [s])))))
-
-(comment
-  (def who "John Smith")
-  #f/str "Hello, {who}!" ;; => "Hello, John Smith!" 
-
-  ;; It also works with arbitrary expressions
-  #f/str "1 + 1 = {(+ 1 2)}" ;; => "1 + 1 = 3"
-
-  ;; And it has a simple escape syntax in case you actually need the curly brackets
-  #f/str "This is not evaluated '{spam}";; => "This is not evaluated {spam}"
-
-  (def where "Sparta")
-  (f-string "This is {where}!")
-  )
