@@ -25,7 +25,7 @@ Real handy. So as an excercise, I made the same for Clojure:
 Add this to deps.edn:
 
 ```clojure
-{blasterai/clj-fstring {:git/url "https://github.com/Blasterai/clj-fstring.git" :sha "c1ca242ad958331edb8c420b1383b7900b85e797"}}
+{blasterai/clj-fstring {:git/url "https://github.com/Blasterai/clj-fstring.git" :sha "a1c080e13990ce1c0343e3b2f04f0937df96fa3c"}}
 ```
 
 ## Usage
