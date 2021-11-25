@@ -13,22 +13,13 @@ print(f'Hello, {name}!')
 Real handy. So as an excercise, I made the same for Clojure:
 
 ```clojure
+(require [blaster.clj-fstring :refer [f-str]])
+
 (def who "John Smith")
-#f/str "Hello, {who}!" ;; => "Hello, John Smith!" 
+(f-str "Hello, {who}!") ;; => "Hello, John Smith!" 
 ```
 
 `f-string` has no dependencies, only the standard library. 
-
-## Limitations :(
-
-Due to the nature of lexical bindings in Clojure I do not see a way to make this work for variables declared in a let block. So this will throw an exception:
-
-```clojure
-(let [nope "this won't work"]
-  #f/str "{nope}")
-```
-
-If you have an idea how to make this work - please let me know!
 
 ## Installation
 Add this to deps.edn:
@@ -39,33 +30,23 @@ Add this to deps.edn:
 
 ## Usage
 
-I really like using it with a reader literal:
+Some examples, including escape syntax:
 
 ```clojure
-  (require blaster.clj-fstring)
-
+  (require [blaster.clj-fstring :refer [f-str]]
+  
   (def who "John Smith")
-  #f/str "Hello, {who}!" ;; => "Hello, John Smith!" 
+  (f-str "Hello, {who}!") ;; => "Hello, John Smith!" 
 
   ;; It also works with arbitrary expressions
-  #f/str "1 + 1 = {(+ 1 2)}" ;; => "1 + 1 = 3"
+  (f-str "1 + 1 = {(+ 1 2)}") ;; => "1 + 1 = 3"
 
   ;; And it has a simple escape syntax in case you actually need the curly brackets
-  #f/str "This is not evaluated '{spam}";; => "This is not evaluated {spam}"
+  (f-str "This is not evaluated '{spam}");; => "This is not evaluated {spam}"
 
   (def where "Sparta")
-  (f-string "This is {where}!")
+  (f-str "This is {where}!")
 ```
-
-But if you insist, you can just require the `f-string` function:
-
-```clojure
-(require [blaster.clj-fstring :refer [f-string]])
-
-(def where "Sparta")
-(f-string "This is {where}!")
-```
-
 
 ## Development
 

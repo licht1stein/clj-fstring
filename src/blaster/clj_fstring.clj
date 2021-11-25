@@ -27,9 +27,9 @@
       :else [curly-open curly-close ])
     ))
 
-(defn f-string
+(defn- f-string-prepare
   ([s]
-   (f-string s []))
+   (f-string-prepare s []))
   ([s acc]
    (if-let [indeces (f-first-brackets-index s)]
      (let [curly-open (first indeces)
@@ -39,5 +39,10 @@
            sym (subs s (inc curly-open) curly-close)]
        (if (escaped? s curly-open)
          (recur rest-s (concat acc [(str/replace (subs s 0 (inc curly-close)) "'{" "{")]))
-         (recur rest-s (concat acc [start-s (eval (edn/read-string sym))]))))
-     (reduce str (concat acc [s])))))
+         (recur rest-s (concat acc [start-s (edn/read-string sym)]))))
+     (concat acc s))))
+
+(defmacro f-str
+  [s]
+  `(str ~@(f-string-prepare s)))
+
