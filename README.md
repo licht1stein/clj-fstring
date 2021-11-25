@@ -34,7 +34,7 @@ If you have an idea how to make this work - please let me know!
 Add this to deps.edn:
 
 ```clojure
-{blasterai/clj-fstring {:git/url "https://github.com/Blasterai/clj-fstring.git" :sha "b40db912d8abcbed14b464a00b83f7e1a17e24d7"}}
+{blasterai/clj-fstring {:git/url "https://github.com/Blasterai/clj-fstring.git" :sha "c1ca242ad958331edb8c420b1383b7900b85e797"}}
 ```
 
 ## Usage
