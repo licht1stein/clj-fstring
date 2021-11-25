@@ -19,6 +19,24 @@ Real handy. So as an excercise, I made the same for Clojure:
 
 `f-string` has no dependencies, only the standard library. 
 
+## Limitations :(
+
+Due to the nature of lexical bindings in Clojure I do not see a way to make this work for variables declared in a let block. So this will throw an exception:
+
+```clojure
+(let [nope "this won't work"]
+  #f/str "{nope}")
+```
+
+If you have an idea how to make this work - please let me know!
+
+## Installation
+Add this to deps.edn:
+
+```clojure
+{blasterai/clj-fstring {:git/url "https://github.com/Blasterai/clj-fstring.git" :sha "b40db912d8abcbed14b464a00b83f7e1a17e24d7"}
+```
+
 ## Usage
 
 I really like using it with a reader literal:
@@ -46,12 +64,8 @@ But if you insist, you can just require the `f-string` function:
 (f-string "This is {where}!")
 ```
 
+
 ## Development
-
-Invoke a library API function from the command-line:
-
-    $ clojure -X blasterai.clj-fstring/foo :a 1 :b '"two"'
-    {:a 1, :b "two"} "Hello, World!"
 
 Run the project's tests (they'll fail until you edit them):
 
