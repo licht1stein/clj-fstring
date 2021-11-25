@@ -42,6 +42,8 @@ Add this to deps.edn:
 I really like using it with a reader literal:
 
 ```clojure
+  (require blaster.clj-fstring)
+
   (def who "John Smith")
   #f/str "Hello, {who}!" ;; => "Hello, John Smith!" 
 
