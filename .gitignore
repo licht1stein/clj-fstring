@@ -15,3 +15,5 @@
 .hg/
 *~
 *#
+.lsp/
+.clj-kondo/
