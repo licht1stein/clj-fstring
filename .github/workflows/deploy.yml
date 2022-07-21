@@ -1,9 +1,7 @@
-name: Test
+name: Deploy to Clojars
 
 on:
   push:
-    branches: [ "master" ]
-  pull_request:
     branches: [ "master" ]
 
 jobs:
@@ -25,8 +23,11 @@ jobs:
         with:
           cli: 1.11.1.1149
 
-      - name: Run tests
-        run: clojure -T:build test
+      - name: Build jar
+        run: clojure -T:build ci
 
-      - name: Run linter
-        run: clojure -T:build eastwood
+      - name: Deploy to clojars
+        env:
+          CLOJARS_USERNAME: ${{ secrets.CLOJARS_USERNAME }}
+          CLOJARS_PASSWORD: ${{ secrets.CLOJARS_PASSWORD }}
+        run: clojure -T:build deploy
