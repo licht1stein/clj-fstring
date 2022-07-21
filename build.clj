@@ -6,6 +6,7 @@
 (def version (format "1.0.%s" (b/git-count-revs nil)))
 
 (defn deploy "Deploy the JAR to Clojars." [opts]
+  (println "Deploying version" version)
   (-> opts
       (assoc :lib lib :version version)
       (bb/deploy)))
