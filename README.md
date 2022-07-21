@@ -47,40 +47,34 @@ Some examples, including escape syntax:
   ;; And it has a simple escape syntax in case you actually need the curly brackets
   (f-str "This is not evaluated '{spam}");; => "This is not evaluated {spam}"
 
-  (def where "Sparta")
-  (f-str "This is {where}!")
+  (let [where "Sparta"]
+    (f-str "This is {where}!"))
 ```
 
 ## Development
 
 Run the project's tests (they'll fail until you edit them):
 
-    $ clojure -X:test:runner
+    $ clojure -T:build test
+
+Lint with Eastwood:
+
+    $ clojure -T:build eastwood
 
 Build a deployable jar of this library:
 
-    $ clojure -X:jar
+    $ clojure -T:build ci
 
-This will update the generated `pom.xml` file to keep the dependencies synchronized with
-your `deps.edn` file. You can update the version (and SCM tag) information in the `pom.xml` using the
-`:version` argument:
+Bump version:
 
-    $ clojure -X:jar :version '"1.0.2"'
+    $ clojure -T:build bump-version :bump :patch
 
-Install it locally (requires the `pom.xml` file):
+Deploy to Clojars:
 
-    $ clojure -X:install
+    $ clojure -T:build deploy
 
-Deploy it to Clojars -- needs `CLOJARS_USERNAME` and `CLOJARS_PASSWORD` environment
-variables (requires the `pom.xml` file):
+Your library will be deployed to com.github.blasterai/clj-fstring.
 
-    $ clojure -X:deploy
-
-Your library will be deployed to io.github.blasterai/clj-fstring on clojars.org by default.
-
-If you don't plan to install/deploy the library, you can remove the
-`pom.xml` file but you will also need to remove `:sync-pom true` from the `deps.edn`
-file (in the `:exec-args` for `depstar`).
 
 ## License
 
