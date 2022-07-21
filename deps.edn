@@ -2,7 +2,8 @@
  :deps {org.clojure/clojure {:mvn/version "1.10.3"}}
  :aliases
  {:test {:extra-paths ["test"]
-         :extra-deps {org.clojure/test.check {:mvn/version "1.1.0"}}}
+         :main-opts ["-m" "kaocha.runner"]
+         :extra-deps {lambdaisland/kaocha {:mvn/version "1.68.1059"}}}
   :runner
   {:extra-deps {io.github.cognitect-labs/test-runner
                 {:git/url "https://github.com/cognitect-labs/test-runner"
