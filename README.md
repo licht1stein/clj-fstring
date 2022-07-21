@@ -24,8 +24,12 @@ Real handy. So as an excercise, I made the same for Clojure:
 
 ## Installation
 
-You can install from [Clojars](https://clojars.org/com.github.blasterai/clj-fstring)
+You can install from [Clojars](https://clojars.org/com.github.blasterai/clj-fstring):
 
+
+```clojure
+{com.github.blasterai/clj-fstring {:mvn/version "1.0.2"}}
+```
 
 ## Usage
 
@@ -61,7 +65,7 @@ This will update the generated `pom.xml` file to keep the dependencies synchroni
 your `deps.edn` file. You can update the version (and SCM tag) information in the `pom.xml` using the
 `:version` argument:
 
-    $ clojure -X:jar :version '"1.2.3"'
+    $ clojure -X:jar :version '"1.0.2"'
 
 Install it locally (requires the `pom.xml` file):
 
