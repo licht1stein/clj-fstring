@@ -18,7 +18,7 @@
 
 (defn- f-first-brackets-index
   [s]
-  (let [curly-open (str/index-of s "{") 
+  (let [curly-open (str/index-of s "{")
         curly-close (str/index-of s "}")]
     (cond
       (and (not curly-open) (not curly-close)) nil
@@ -45,4 +45,3 @@
 (defmacro f-str
   [s]
   `(str ~@(f-string-prepare s)))
-

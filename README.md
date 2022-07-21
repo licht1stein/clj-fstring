@@ -1,4 +1,5 @@
 # clj-fstring
+![Clojars Version](https://img.shields.io/clojars/v/com.github.blasterai/clj-fstring)
 
 Python's f-string for Clojure!
 
@@ -16,17 +17,15 @@ Real handy. So as an excercise, I made the same for Clojure:
 (require [blaster.clj-fstring :refer [f-str]])
 
 (def who "John Smith")
-(f-str "Hello, {who}!") ;; => "Hello, John Smith!" 
+(f-str "Hello, {who}!") ;; => "Hello, John Smith!"
 ```
 
-`f-string` has no dependencies, only the standard library. 
+`f-string` has no dependencies, only the standard library.
 
 ## Installation
-Add this to deps.edn:
 
-```clojure
-{blasterai/clj-fstring {:git/url "https://github.com/Blasterai/clj-fstring.git" :sha "a1c080e13990ce1c0343e3b2f04f0937df96fa3c"}}
-```
+You can install from [Clojars](https://clojars.org/com.github.blasterai/clj-fstring)
+
 
 ## Usage
 
@@ -34,9 +33,9 @@ Some examples, including escape syntax:
 
 ```clojure
   (require [blaster.clj-fstring :refer [f-str]]
-  
+
   (def who "John Smith")
-  (f-str "Hello, {who}!") ;; => "Hello, John Smith!" 
+  (f-str "Hello, {who}!") ;; => "Hello, John Smith!"
 
   ;; It also works with arbitrary expressions
   (f-str "1 + 1 = {(+ 1 2)}") ;; => "1 + 1 = 3"
@@ -78,7 +77,7 @@ Your library will be deployed to io.github.blasterai/clj-fstring on clojars.org 
 If you don't plan to install/deploy the library, you can remove the
 `pom.xml` file but you will also need to remove `:sync-pom true` from the `deps.edn`
 file (in the `:exec-args` for `depstar`).
-    
+
 ## License
 
 Copyright © 2021 blaster.ai
