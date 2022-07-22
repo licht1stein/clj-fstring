@@ -8,3 +8,9 @@
 (deftest escape-test
   (is (f-str "'{bar}") "{bar}"))
 
+(deftest escapte-test-2
+  (is (f-str "'{bar} {(+ 1 2)}") "{bar} 3"))
+
+(deftest let-test
+  (let [where "Sparta"]
+    (is (f-str "This is {where}!") "This is Sparta!")))
