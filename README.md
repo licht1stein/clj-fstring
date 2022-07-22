@@ -1,5 +1,5 @@
 # clj-fstring
-![Clojars Version](https://img.shields.io/clojars/v/com.github.blasterai/clj-fstring)
+[![Clojars Version](https://img.shields.io/clojars/v/com.github.blasterai/clj-fstring)](https://clojars.org/com.github.blasterai/clj-fstring)
 
 Python's f-string for Clojure!
 
