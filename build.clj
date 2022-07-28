@@ -34,7 +34,7 @@
 
 (defn bump-version
   "Bumps version in the .version file. Accepts :bump [:major :minor :patch]"
-  [{:keys [bump]}]
+  [& {:keys [bump]}]
   (let [[major minor patch] (map parse-long (str/split version #"\."))
         new-version (->> (case bump
                            :major [(inc major) 0 0]
@@ -46,6 +46,6 @@
     (println new-version)))
 
 (comment
-  ()
+  (bump-version :bump :minor)
   (ci {})
   (deploy))

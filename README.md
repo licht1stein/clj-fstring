@@ -28,7 +28,7 @@ You can install from [Clojars](https://clojars.org/com.github.blasterai/clj-fstr
 
 
 ```clojure
-{com.github.blasterai/clj-fstring {:mvn/version "1.0.2"}}
+{com.github.blasterai/clj-fstring {:mvn/version "1.1.0"}}
 ```
 
 ## Usage
