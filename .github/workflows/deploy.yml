@@ -43,4 +43,4 @@ jobs:
         uses: laputansoft/github-tag-action@v4.6
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          tag: ${{ steps.version.outputs.stdout.value }}
+          tag: 1.1.2-SNAPSHOT
