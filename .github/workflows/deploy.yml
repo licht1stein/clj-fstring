@@ -42,5 +42,6 @@ jobs:
       - name: Push tag
         uses: laputansoft/github-tag-action@v4.6
         with:
+          default_bump: false
           github_token: ${{ secrets.GITHUB_TOKEN }}
           tag: 1.1.2-SNAPSHOT
