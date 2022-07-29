@@ -33,11 +33,11 @@ jobs:
         run: clojure -T:build deploy
 
       - name: Check version
-        id: version
+        id: get_version
         run: cat .version
 
       - name: Create Tag
         uses: negz/create-tag@v1
         with:
-          version: 1.1.2-SNAPSHOT
+          version: ${{ steps.get_version.outputs.stdout.value }}
           token: ${{ secrets.GITHUB_TOKEN }}
