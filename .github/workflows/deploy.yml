@@ -36,6 +36,9 @@ jobs:
         id: version
         run: cat .version
 
+      - name: Check output
+        run: echo ${{ steps.version.outputs.stdout }}
+
       - name: Push tag
         uses: laputansoft/github-tag-action@v4.6
         with:
