@@ -35,5 +35,5 @@ jobs:
       - name: Push tag
         uses: laputansoft/github-tag-action@v4.6
         with:
-          github_token: ${{ env.github-token }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
           tag: echo .version
