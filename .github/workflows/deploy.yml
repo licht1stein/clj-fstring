@@ -32,8 +32,12 @@ jobs:
           CLOJARS_PASSWORD: ${{ secrets.CLOJARS_PASSWORD }}
         run: clojure -T:build deploy
 
+      - name: Check version
+        id: version
+        run: cat .version
+
       - name: Push tag
         uses: laputansoft/github-tag-action@v4.6
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          tag: echo .version
+          tag: ${{ steps.version.outputs.stdout }}
