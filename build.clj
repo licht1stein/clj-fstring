@@ -4,15 +4,15 @@
             [org.corfield.build :as bb]))
 
 (def lib 'com.github.blasterai/clj-fstring)
-(def version (slurp ".version"))
+(def current-version (slurp ".version"))
 
 (defn deploy "Deploy the JAR to Clojars." [opts]
-  (println "Deploying version" version)
+  (println "Deploying version" current-version)
   (-> opts
-      (assoc :lib lib :version version)
+      (assoc :lib lib :version current-version)
       (bb/deploy)))
 
-(defn test [opts]
+(defn tests [opts]
   (bb/run-tests opts))
 
 (defn eastwood "Run Eastwood." [opts]
@@ -22,11 +22,11 @@
   [opts]
   (-> opts
       (assoc :lib lib
-             :version version
+             :version current-version
              :scm {:url "https://github.com/blasterai/clj-fstring"
                    :connection "scm:git:git://github.com/blaster-ai/clj-fstring.git"
                    :developerConnection "scm:git:ssh://git@github.com/blasterai/clj-fstring.git"
-                   :tag version})
+                   :tag current-version})
       (bb/run-tests)
       (eastwood)
       (bb/clean)
@@ -37,18 +37,20 @@
     (->> (str/replace readme #"\d+.\d+.\d+" version)
          (spit "README.md"))))
 
-(defn bump-version
+(defn version
   "Bumps version in the .version file. Accepts :bump [:major :minor :patch]"
   [& {:keys [bump]}]
-  (let [[major minor patch] (map parse-long (str/split version #"\."))
-        new-version (->> (case bump
-                           :major [(inc major) 0 0]
-                           :minor [major (inc minor) 0]
-                           :patch [major minor (inc patch)])
-                         (str/join "."))]
-    (spit ".version" new-version)
-    (update-readme new-version)
-    (println new-version)))
+  (if-not bump
+    (println current-version)
+    (let [[major minor patch] (map parse-long (str/split current-version #"\."))
+          new-version (->> (case bump
+                             :major [(inc major) 0 0]
+                             :minor [major (inc minor) 0]
+                             :patch [major minor (inc patch)])
+                           (str/join "."))]
+      (spit ".version" new-version)
+      (update-readme new-version)
+      (println new-version))))
 
 (comment
   (bump-version :bump :minor)
