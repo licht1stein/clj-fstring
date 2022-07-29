@@ -21,7 +21,12 @@
 (defn ci "Run the CI pipeline of tests (and build the JAR)."
   [opts]
   (-> opts
-      (assoc :lib lib :version version)
+      (assoc :lib lib
+             :version version
+             :scm {:url "https://github.com/blasterai/clj-fstring"
+                   :connection "scm:git:git://github.com/blaster-ai/clj-fstring.git"
+                   :developerConnection "scm:git:ssh://git@github.com/blasterai/clj-fstring.git"
+                   :tag version})
       (bb/run-tests)
       (eastwood)
       (bb/clean)
@@ -46,6 +51,6 @@
     (println new-version)))
 
 (comment
-  (bump-version :bump :minorq)
+  (bump-version :bump :minor)
   (ci {})
   (deploy))

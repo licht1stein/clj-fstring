@@ -18,3 +18,4 @@
 .lsp/
 .clj-kondo/
 .eastwood
+.DS_Store
