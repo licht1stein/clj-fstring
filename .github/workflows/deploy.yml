@@ -36,12 +36,8 @@ jobs:
         id: version
         run: cat .version
 
-      - name: Check output
-        run: echo ${{ steps.version.outputs.stdout.value }}
-
-      - name: Push tag
-        uses: laputansoft/github-tag-action@v4.6
+      - name: Create Tag
+        uses: negz/create-tag@v1
         with:
-          default_bump: false
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          tag: 1.1.2-SNAPSHOT
+          version: 1.1.2-SNAPSHOT
+          token: ${{ secrets.GITHUB_TOKEN }}
