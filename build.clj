@@ -46,6 +46,6 @@
     (println new-version)))
 
 (comment
-  (bump-version :bump :minor)
+  (bump-version :bump :minorq)
   (ci {})
   (deploy))
